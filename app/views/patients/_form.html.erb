@@ -1,0 +1,45 @@
+
+
+
+<div class="modal-form">
+<%= form_for(@patient) do |f| %>
+  <% if @patient.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@patient.errors.count, "error") %> prohibited this patient from being saved:</h2>
+
+      <ul>
+      <% @patient.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %><br />
+  </div>
+  <div class="field">
+    <%= f.label :age %><br />
+    <%= f.text_field :age %><br />
+  </div>
+  <div class="field">
+    <%= f.label :symtom %><br />
+    <%= f.text_field :symtom %><br />
+  </div>
+  <div class="field">
+    <%= f.label :sex %><br />
+    <%= f.select :sex , [['Male'], ['Female']], {:prompt => "Select Gender"} %><br />
+  </div>
+  <div class="field">
+    <%= f.label :tel %><br />
+    <%= f.text_field :tel %>
+  </div>
+  <br>
+  <div class="actions">
+
+    <%= f.submit %>
+    <%=link_to 'Back', patients_path , :class=> "lime"%>
+  </div>
+<% end %>
+</div>

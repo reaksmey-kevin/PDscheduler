@@ -1,0 +1,45 @@
+<div id="pagewrap">
+<div id="content">
+  <div class="modal-form">
+<%= form_for(@doctor) do |f| %>
+  <% if @doctor.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@doctor.errors.count, "error") %> prohibited this doctor from being saved:</h2>
+
+      <ul>
+      <% @doctor.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :symptom_discussion %><br />
+    <%= f.select :symptom_discussion, [['Love'], ['AIDS'], ['Cancer'], ['Malaria']] %>
+  </div>
+  <div class="field">
+    <%= f.label :sex%><br/>
+    <%= f.select :sex, [['Male'],['Female']], :inlude_blank => "select Gender"%>
+
+
+  </div>
+  <div class="field">
+    <%= f.label :Telephone%><br/>
+    <%= f.text_field :tel%>
+
+
+  </div>
+  <br>
+  <div class="actions">
+    <%= f.submit 'Add Doctor', :class => "cyan-pink" %>
+    <%= link_to 'Back', doctors_path, :class => "lime"%>
+ </div>
+<% end %>
+</div>
+</div>
+</div>

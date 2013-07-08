@@ -1,0 +1,87 @@
+<div id="pagewrap">
+<%= render 'layouts/navigation'%>
+<div id="content">
+<h1>Listing appointments</h1>
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Room</th>
+    <th>Patient</th>
+    <th>Doctor</th>
+    <th>Symptom</th>
+    <th></th>
+    <th>Action</th>
+    <th></th>
+ 
+  </tr>
+
+<% @appointments.each do |appointment| %>
+  <tr>
+    <td><%= appointment.Date%></td>
+    <td><%= appointment.Room %></td>
+    <td><%= appointment.patient.name %></td>
+    <td><%= appointment.doctor.name %></td>
+    <td><%= appointment.doctor.symptom_discussion%></td>
+
+    <td><%= link_to 'Show', appointment %></td>
+    <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
+    <td><%= link_to 'Delete', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<div id="pop-up">
+    <div id="pop-up-close"><%=link_to 'x', ''%></div>
+<div class="Header"><h4 class="center">Adding Schedule</h4></div>
+
+    <div class="modal-form">
+        <%= simple_form_for Appointment.new do |f| %>
+  <% if Appointment.new.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@appointments.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+
+      <ul>
+      <% @appointment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Date %><br />
+    <%= f.datetime_select :Date %><br />
+  </div>
+  <div class="field">
+    <%= f.label :Room %>
+    <%= f.select :Room, [['Room 1'], ['Room 2'], ['Room 3']], {:prompt => "Select Room"} %>
+  </div>
+  <div class="field">
+    <%= f.association :patient, :include_blank => ('Select Patient') %>
+  </div>
+  <div class="field">
+
+    <%= f.association :doctor, :include_blank => ('Select Doctor') %><br />
+  </div>  
+
+    </div>
+
+
+<div class="footer">
+
+<div class="pull-right">
+    <%= f.submit 'Add Appointment' %>
+    <%= link_to 'Back', appointments_path, :class => "lime"%>
+  </div>
+</div>
+
+</div>
+<% end %>
+
+
+<%= link_to '+ Add Schedule', '#pop-up', :class => "cyan-pink" %>
+</div>
+</div>

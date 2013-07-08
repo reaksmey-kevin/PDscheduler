@@ -1,0 +1,94 @@
+<div id="pagewrap">
+
+
+<%=render 'layouts/navigation'%>
+
+
+<h1>Listing patients</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Symtom</th>
+    <th>Sex</th>
+    <th>Tel</th>
+    <th></th>
+    <th>Action</th>
+    <th></th>
+  </tr>
+
+<% @patients.each do |patient| %>
+  <tr>
+    <td><%= patient.name %></td>
+    <td><%= patient.age %></td>
+    <td><%= patient.symtom %></td>
+    <td><%= patient.sex %></td>
+    <td><%= patient.tel %></td>
+    <td><%= link_to 'Show', patient %></td>
+    <td><%= link_to 'Edit', edit_patient_path(patient) %></td>
+    <td><%= link_to 'Destroy', patient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+    <div id="pop-up">
+
+        <div id="pop-up-close"><%=link_to 'x', '', :class => "pull-right"%></div>
+        <div class="Header"><h4 class="center">Adding Patient</h4></div>
+        <div class="modal-form">
+        <%= form_for Patient.new do |f| %>
+  <% if Patient.new.errors.any? %>
+      <h4><%= pluralize(@patient.errors.count, "error") %> prohibited this patient from being saved:</h4>
+
+      <ul>
+      <% @patient.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+    <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :age %><br />
+    <%= f.text_field :age %>
+  </div>
+  <div class="field">
+    <%= f.label :symptom %><br />
+    <%= f.text_field :symtom %>
+  </div>
+  <div class="field">
+    <%= f.label :sex %><br />
+    <%= f.select :sex , [['Male'], ['Female']], {:prompt => "Select Gender"} %>
+  </div>
+  <div class="field">
+    <%= f.label :tel %><br />
+    <%= f.text_field :tel %>
+  </div>
+
+
+</div>
+  <div class="footer">
+    <div class="pull-right">
+    <%= f.submit 'Add Patient ' %>
+        <%=link_to 'Back', patients_path , :class=> "lime"%>
+
+</div>
+</div>
+<% end %>
+</div>
+     
+
+
+
+
+
+    </div>
+
+<br />
+
+<%= link_to '+ Add New', '#pop-up', :class => "cyan-pink" %>
+</div>

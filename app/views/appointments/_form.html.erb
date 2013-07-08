@@ -1,0 +1,43 @@
+
+<div id="pagewrap">
+<div id="content">
+
+<%= simple_form_for(@appointment) do |f| %>
+  <% if @appointment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@appointment.errors.count, "error") %> prohibited this appointment from being saved:</h2>
+
+      <ul>
+      <% @appointment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Date %><br />
+    <%= f.datetime_select :Date %>
+  </div>
+  <div class="field">
+    <%= f.label :Room %>
+    <%= f.select :Room, [['Room 1'], ['Room 2'], ['Room 3']], {:prompt => "Select Room"} %>
+  </div>
+  <div class="field">
+    <%= f.association :patient, :include_blank => ('Select Patient') %>
+  </div>
+  <div class="field">
+
+    <%= f.association :doctor, :include_blank => ('Select Doctor') %>
+  </div>  
+
+
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>
+</div>
+</div>
