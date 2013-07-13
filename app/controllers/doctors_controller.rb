@@ -3,7 +3,19 @@ class DoctorsController < ApplicationController
   # GET /doctors.json
 before_filter :initialize_doctor
   def index
-    @doctors = Doctor.find(:all, :order => 'name')
+    @doctors = Doctor.search(params[:search])
+    if @doctors.class== Array
+
+      @doctors=Kaminari.paginate_array(@doctors).page(params[:page]).per(5)
+
+    else
+
+      @doctors=@doctors.page(params[:page]).per(5)
+
+    end
+
+
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @doctors }

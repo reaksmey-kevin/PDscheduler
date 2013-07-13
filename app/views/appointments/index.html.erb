@@ -2,8 +2,20 @@
 <%= render 'layouts/navigation'%>
 <div id="content">
 <h1>Listing appointments</h1>
+<%= form_tag appointments_path, :method => 'get' do %>
+<p>
+  <%= text_field_tag :search, params[:search], :placeholder => "Search Patient's names" %>
+  <%= submit_tag "search", :name => nil%>
+
+
+</p>
+
+
+
+<%end%>
 
 <table>
+  <thead>
   <tr>
     <th>Date</th>
     <th>Room</th>
@@ -15,20 +27,24 @@
     <th></th>
  
   </tr>
-
+</thead>
+<tbody>
 <% @appointments.each do |appointment| %>
   <tr>
-    <td><%= appointment.Date%></td>
+    <td><%= appointment.Date.strftime("%B %e, %Y") %></td>
     <td><%= appointment.Room %></td>
     <td><%= appointment.patient.name %></td>
     <td><%= appointment.doctor.name %></td>
     <td><%= appointment.doctor.symptom_discussion%></td>
-
+    
     <td><%= link_to 'Show', appointment %></td>
     <td><%= link_to 'Edit', edit_appointment_path(appointment) %></td>
     <td><%= link_to 'Delete', appointment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+ 
 <% end %>
+
+      </tr>
+      </tbody>
 </table>
 
 <br />
@@ -52,7 +68,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :Date %><br />
+    <%= f.label :DateTime %><br />
     <%= f.datetime_select :Date %><br />
   </div>
   <div class="field">
@@ -74,14 +90,20 @@
 
 <div class="pull-right">
     <%= f.submit 'Add Appointment' %>
-    <%= link_to 'Back', appointments_path, :class => "lime"%>
+    <%= link_to 'Back', appointments_path, class: "lime"%>
   </div>
 </div>
 
 </div>
 <% end %>
 
+<%= link_to '+ Add Schedule', '#pop-up', :class => "cyan-pink" %><br><br>
+<div class="page"><%= paginate @appointments%></div>
 
-<%= link_to '+ Add Schedule', '#pop-up', :class => "cyan-pink" %>
 </div>
+
+
+
+<div id="footer"></div>
 </div>
+

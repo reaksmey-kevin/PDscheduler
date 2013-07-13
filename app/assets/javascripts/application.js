@@ -9,16 +9,8 @@
 //
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
-//
+//= 
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
-$('.open').click(function(){
-  $('#lightbox').fadeTo(1000, 1);
-  $("#wrapper").css({'text-shadow': '0px 0px 10px #000'});
-});
 
-$('.close').click(function(){
-  $('#lightbox').hide();
-  $("#wrapper").css({'text-shadow': '0px 0px 0px #000'});
-});
+//= require_tree .

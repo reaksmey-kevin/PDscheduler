@@ -1,7 +1,18 @@
 <div id="pagewrap">
 <%= render 'layouts/navigation'%>
+<div id="content">
 <h1>Listing doctors</h1>
+<%=form_tag doctors_path , :method => 'get' do%>
+  <p>
+      <%= text_field_tag :search, params[:search], :placeholder => "Search Doctor's Names or Symptom Disccusstion"%>
+      <%= submit_tag "search", :name => nil%>
 
+
+
+  </p>
+
+
+<%end%>
 <table>
   <tr>
     <th>Name</th>
@@ -84,5 +95,7 @@
 
 
 
-<%= link_to '+ Add New', '#pop-up', class: "cyan-pink" %>
+<%= link_to '+ Add New', '#pop-up', class: "cyan-pink" %><br><br>
+<div class="page"><%= paginate @doctors%></div>
+</div>
 </div>

@@ -3,7 +3,12 @@ class PatientsController < ApplicationController
   # GET /patients.json
   before_filter :initialize_patient
   def index
-    @patients = Patient.all
+    @patients = Patient.search(params[:search])
+    if @patients.class == Array 
+        @patients=Kaminari.paginate_array(@patients).page(params[:page]).per(5)
+    else
+        @patients=@patients.page(params[:page]).per(5)
+    end
 
     respond_to do |format|
       format.html # index.html.erb
