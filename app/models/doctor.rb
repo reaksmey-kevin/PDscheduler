@@ -8,7 +8,7 @@ class Doctor < ActiveRecord::Base
 
   		if search 
 
-  			find(:all, conditions:['name || symptom_discussion LIKE ?', "%#{search}%"])
+  			find(:all, conditions:['name || symptom_discussion iLIKE ?', "%#{search}%"])
 
 
   		else

@@ -7,7 +7,7 @@ class Patient < ActiveRecord::Base
   def self.search(search)
 
   		if search
-  			find(:all, conditions:['name || age || sex || symtom LIKE ?', "%#{search}%"])
+  			find(:all, conditions:['name || age || sex || symtom iLIKE ?', "%#{search}%"])
 
   		else
   			find(:all)

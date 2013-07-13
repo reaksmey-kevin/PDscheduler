@@ -23,7 +23,7 @@ class Appointment < ActiveRecord::Base
 
  	def self.search(search)
  		if search 
- 			find(:all ,conditions: ['name LIKE ?', "%#{search}%"])
+ 			find(:all ,conditions: ['name iLIKE ?', "%#{search}%"])
 
  		else 
  		
