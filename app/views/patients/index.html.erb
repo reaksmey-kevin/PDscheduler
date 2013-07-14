@@ -5,7 +5,7 @@
 <div id="content">
 
 <h1>Listing patients</h1>
-
+<div id="notice" class="success"><%= notice%></div>
 <%= form_tag patients_path, :method => 'get' do %>
 
     <%= text_field_tag :search , params[:search], :placeholder => "Search for Patient's Name, Age, Sex"%>

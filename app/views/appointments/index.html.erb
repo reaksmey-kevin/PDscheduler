@@ -2,6 +2,7 @@
 <%= render 'layouts/navigation'%>
 <div id="content">
 <h1>Listing appointments</h1>
+<div id="notice" class="success"><%= notice%></div>
 <%= form_tag appointments_path, :method => 'get' do %>
 <p>
   <%= text_field_tag :search, params[:search], :placeholder => "Search Patient's names" %>
@@ -19,8 +20,8 @@
   <tr>
     <th>Date</th>
     <th>Room</th>
-    <th>Patient</th>
-    <th>Doctor</th>
+    <th>Patient Name</th>
+    <th>Doctor Name</th>
     <th>Symptom</th>
     <th></th>
     <th>Action</th>

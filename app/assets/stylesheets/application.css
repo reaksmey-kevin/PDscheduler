@@ -72,6 +72,7 @@ ul{
 	font-size: 14px;
 	text-decoration: none;
 }
+
 a{
 
 	padding: 5px;
@@ -79,8 +80,8 @@ a{
 	text-decoration: none;
 }
 a:hover{
-background: transparent;
-color:#000;
+background: #1288CA;
+color:#FFF;
 
 
 }
@@ -314,4 +315,9 @@ input[type="submit"]{
 
 .field{
 	padding-top: 5px;
+}
+
+.success{
+
+	color: #00FF38;
 }
