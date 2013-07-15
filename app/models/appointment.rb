@@ -18,12 +18,12 @@ class Appointment < ActiveRecord::Base
 
  		end
 
-
+ 	-0
  	end
 
  	def self.search(search)
  		if search 
- 			find(:all ,conditions: ['name iLIKE ?', "%#{search}%", 'created_at DESC'])
+ 			find(:all ,conditions: ['name iLIKE ?', "%#{search}%"])
 
  		else 
  		
